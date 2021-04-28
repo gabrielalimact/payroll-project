@@ -26,12 +26,13 @@ public class PayrollSystem {
             System.out.println("5 - Add a Sale Report");
             System.out.println("6 - Add Service Fees");
             System.out.println("7 - Edit a employee");
+            System.out.println("8 - Today Payroll");
             System.out.println("0 - Close menu.\n");
             System.out.print("  -> ");
 
 
-            op = input.nextInt();
-            input.nextLine();
+            op = SystemInputs.readInt(input, "");
+
 
             switch(op){
                 case 1:
@@ -46,7 +47,7 @@ public class PayrollSystem {
                     int i=1;
                     for(Employee employee: employeeList){
                         System.out.println( i +" Employee: ");
-                        System.out.println(employee.toString());
+                        System.out.println(employee.employeeInfos());
                         System.out.println("\n=========================\n");
                         i++;
                     }
@@ -66,6 +67,12 @@ public class PayrollSystem {
                         EmployeeConf.addTC(input, employeeList);
                         
                     }
+                    break;
+                case 7:
+                    EmployeeConf.editEmployee(input, employeeList);
+                    break;
+                case 8:
+                    PaymentConf.TodayPayroll(input, employeeList);
                     break;
             }
         }

@@ -9,10 +9,10 @@ public class Paycheck {
     private LocalDate date;
     private double totalSalary;
     private double discounts;
-    private boolean syndFees;
+    private double syndFees;
 
 
-    public Paycheck(Employee employee, LocalDate date, double totalSalary, double discounts, boolean syndFees) {
+    public Paycheck(Employee employee, LocalDate date, double totalSalary, double discounts, double syndFees) {
         this.employee = employee;
         this.date = date;
         this.totalSalary = totalSalary;
@@ -48,11 +48,11 @@ public class Paycheck {
         this.totalSalary = totalSalary;
     }
 
-    public boolean getSyndFees() {
+    public double getSyndFees() {
         return this.syndFees;
     }
 
-    public void setSyndFees(boolean syndFees) {
+    public void setSyndFees(double syndFees) {
         this.syndFees = syndFees;
     }
 
@@ -68,9 +68,9 @@ public class Paycheck {
     
     @Override
     public String toString() {
-        return "\nEmployee:\n" + getEmployee().basic() +
+        return "Employee:\n" + getEmployee().basic() +
             "\nTotal Salary = $" + getTotalSalary() +
-            "\newDiscounts = $" + getDiscounts() + 
+            "\nDiscounts = $" + getDiscounts() + 
             "\nSalary = $"+ getNetSalary();
 
     }

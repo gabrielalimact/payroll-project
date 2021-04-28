@@ -25,4 +25,13 @@ public class Salaried extends Employee {
     public void setSalary(double salary) {
         this.salary = salary;
     }
+
+
+    @Override
+    public String toString() {
+        return "{" +
+            " Salary = '$" + getSalary() + "'" +
+            "}";
+    }
+
 }

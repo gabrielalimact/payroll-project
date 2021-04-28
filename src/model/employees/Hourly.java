@@ -60,7 +60,10 @@ public class Hourly extends Employee{
     public Hourly(String name, String address, UUID id, Syndicate syndicate, Payments paymentInfo, double hourPay) {
         super(name, address, id, syndicate, paymentInfo);
         this.hourPay = hourPay;
+        this.timeCard = new ArrayList<TimeCard>();
     }
+
+
 
 
     public double getHourPay() {
@@ -84,8 +87,8 @@ public class Hourly extends Employee{
     @Override
     public String toString() {
         return "{" +
-            " hourPay='" + getHourPay() + "'" +
-            ", timeCard='" + getTimeCard() + "'" +
+            " Hour Pay = $" + getHourPay() +
+            ", Time Card: " + getTimeCard() +
             "}";
     }
 

@@ -38,5 +38,14 @@ public class TimeCard {
         this.timeOUT = timeOUT;
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+            " Date: '" + getDate() + "'" +
+            ", Time IN: '" + getTimeIN() + "'" +
+            ", Time OUT: '" + getTimeOUT() + "'" +
+            "}";
+    }
+
 
 }

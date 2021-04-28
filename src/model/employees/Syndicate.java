@@ -13,7 +13,7 @@ public class Syndicate {
     public Syndicate(UUID idEmployee, double fees, boolean active) {
         this.idEmployee = idEmployee;
         this.fees = fees;
-        this.active = active;
+        this.active = true;
     }
 
     public UUID getIdEmployee() {
@@ -54,9 +54,9 @@ public class Syndicate {
     public String toString() {
         return "{" +
             " Employee ID ='" + getIdEmployee() + "'" +
-            "\nFees Price = '" + getFees() + "'" +
-            "\n Active = '" + getActive() + "'" +
-            "\n Service Fees = '" + getServiceFees() + "'" +
+            ", Syndicate Fee = '" + getFees() + "'" +
+            ", Active = '" + getActive() + "'" +
+            ", Service Fees = '" + getServiceFees() + "'" +
             "}";
     }
 

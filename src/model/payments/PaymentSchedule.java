@@ -10,9 +10,9 @@ public class PaymentSchedule {
     public PaymentSchedule(){
         this.schedule = new ArrayList<String>();
 
-        this.schedule.add("mensal");
-        this.schedule.add("bisemanal");
-        this.schedule.add("semanal");
+        this.schedule.add("monthly");
+        this.schedule.add("biweekly");
+        this.schedule.add("weekly");
     }
 
 

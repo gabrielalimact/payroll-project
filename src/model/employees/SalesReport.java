@@ -29,4 +29,13 @@ public class SalesReport {
         this.date = date;
     }
 
+
+    @Override
+    public String toString() {
+        return "{" +
+            " value='" + getValue() + "'" +
+            ", date='" + getDate() + "'" +
+            "}";
+    }
+    
 }

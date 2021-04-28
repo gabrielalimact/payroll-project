@@ -79,9 +79,9 @@ public class Commissioned extends Employee{
     @Override
     public String toString() {
         return "{" +
-            " salary='$" + getSalary() + "'" +
-            ", percentage of commission='" + getPercCommission() + "%'" +
-            ", salesReport='" + getSalesReport() + "'" +
+            " Salary = $" + getSalary() +
+            ", Percentage of Commission = " + getPercCommission() + "%" +
+            ", Sales Report = '" + getSalesReport() + "'" +
             "}";
     }
 

@@ -50,5 +50,21 @@ public class SystemInputs {
         return LocalDate.of(year, month, day);
     }
 
+    public static LocalDate lastDayOfMonthh(LocalDate lastDay){
+        LocalDate lastDayOfMonth;
+
+        switch(lastDay.getDayOfWeek()){
+            case SATURDAY:
+                lastDayOfMonth = lastDay.minusDays(1);
+                break;
+            case SUNDAY:
+                lastDayOfMonth = lastDay.minusDays(2);
+                break;
+            default:
+                lastDayOfMonth = lastDay;
+                break;
+        }
+        return lastDayOfMonth;
+    }
 
 }

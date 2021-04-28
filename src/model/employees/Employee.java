@@ -23,6 +23,33 @@ public abstract class Employee {
         this.payInfo = payInfo;
     }
 
+    public Paycheck paymentsForToday(LocalDate date){
+        LocalDate lastPayDay;
+        double totalSalary = this.calculatePayment(date);
+        double discounts = this.calculateServicesFees();
+        double syndFees = this.getSyndFees();
+
+        if(syndFees > 0){
+            Paycheck last = this.getPayInfo().getLastPaycheck();
+
+            if(last == null){
+                discounts += syndFees;
+            }else{
+                lastPayDay = last.getDate();
+
+                if((lastPayDay.getMonthValue() != date.getMonthValue() && lastPayDay.getYear() != date.getYear())){
+                    discounts += syndFees;
+                }
+            }
+        }
+
+        Paycheck paycheck = new Paycheck (this, date, totalSalary, discounts, syndFees);
+        this.getPayInfo().getPaycheck().add(paycheck);
+
+        return paycheck;
+
+    }
+
     public double getSyndFees(){
         double payFees = 0;
         Syndicate synd = getSyndicate();
@@ -47,11 +74,7 @@ public abstract class Employee {
         return totalTaxes;
     }
     
-    // public Paycheck paymentsForToday(LocalDate date){
-    //     Paycheck paycheck = null;
-    //     double totalSalary = this.calculatePayment(date);
-
-    // }
+    
     public String getName() {
         return this.name;
     }
@@ -96,15 +119,14 @@ public abstract class Employee {
             "}\n";
     }
 
-    @Override
-    public String toString() {
-        return "{" +
-            "\nName='" + getName() + "'" +
-            "\nAddress='" + getAddress() + "'" +
-            "\nID='" + getId() + "'" +
-            "\nSyndicate='" + getSyndicate() + "'" +
-            "\nPaymentInfo='" + getPayInfo() + "'" +
-            "\n}";
+    
+    public String employeeInfos() {
+        return
+            "-> Name = '" + getName() + "'" +
+            "\n-> Address = '" + getAddress() + "'" +
+            "\n-> ID = '" + getId() + "'" +
+            "\n-> Syndicate = '" + getSyndicate() + "'" +
+            "\n-> PaymentInfo = '" + getPayInfo() + "'";
     }
 
 }
