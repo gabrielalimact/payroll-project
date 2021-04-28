@@ -37,7 +37,6 @@ public class PayrollSystem {
             switch(op){
                 case 1:
                     employeeList.add(EmployeeConf.newEmployee(input, paySchedule));
-                    
                     break;
 
                 case 2:
@@ -46,7 +45,7 @@ public class PayrollSystem {
                     }
                     int i=1;
                     for(Employee employee: employeeList){
-                        System.out.println( i +" Employee: ");
+                        System.out.println("{ " + i + " }"+" Employee: ");
                         System.out.println(employee.employeeInfos());
                         System.out.println("\n=========================\n");
                         i++;
@@ -68,11 +67,33 @@ public class PayrollSystem {
                         
                     }
                     break;
+                case 5:
+                    if(employeeList.isEmpty()){
+                        System.out.println("\nEmployee list is empty\n");
+                    }else{
+                        EmployeeConf.addSR(input, employeeList);
+                    }
+                    break;
+                case 6:
+                    if(employeeList.isEmpty()){
+                        System.out.println("\nEmployee list is empty\n");
+                    }else{
+                        EmployeeConf.addSF(input, employeeList);
+                    }
+                    break;
                 case 7:
-                    EmployeeConf.editEmployee(input, employeeList);
+                    if(employeeList.isEmpty()){
+                        System.out.println("\nEmployee list is empty\n");
+                    }else{
+                        EmployeeConf.editEmployee(input, employeeList);
+                    }
                     break;
                 case 8:
-                    PaymentConf.TodayPayroll(input, employeeList);
+                    if(employeeList.isEmpty()){
+                        System.out.println("\nEmployee list is empty\n");
+                    }else{
+                        PaymentConf.TodayPayroll(input, employeeList);
+                    }
                     break;
             }
         }
