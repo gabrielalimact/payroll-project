@@ -147,7 +147,7 @@ public class EmployeeConf{
         List<Employee> syndEmployee = employeeList.stream().filter(isSynd).collect(Collectors.toList()); // adiciona todos os sindicalistas numa lista
 
         if(syndEmployee.isEmpty()){
-            System.out.println("There are no commissioned employees on the list.");
+            System.out.println("There are no syndicalist employees on the list.");
         }else{
             System.out.println("Enter the date:");
             LocalDate date = SystemInputs.readDate(input);

@@ -42,11 +42,12 @@ public class PaymentConf {
         System.out.println(daysBetween);
         int isFriday = 0;
         Paycheck paycheck;
-        while(i<daysBetween){
-            LocalDate date = start.plusDays(i);
-            LocalDate lastDay = SystemInputs.lastDayOfMonthh(date.with(TemporalAdjusters.lastDayOfMonth()));
+        LocalDate date = start;
+        
+        for(i = 0; i<daysBetween; i++){
+            date = start.plusDays(i);
             
-            if(!date.isEqual(lastDay)){
+            if(date.isEqual(SystemInputs.lastDayOfMonthh(date.with(TemporalAdjusters.lastDayOfMonth())))){
                 System.out.println("The last day of month (working day): '" + date.toString() + "', for pay salaried employees");
                 Predicate<Employee> isSalaried = sEmployee -> sEmployee instanceof Salaried;
                 List<Employee> sEmployees = employeeList.stream().filter(isSalaried).collect(Collectors.toList());
@@ -92,8 +93,5 @@ public class PaymentConf {
                 }
             }
         }
-        
-        
-
     }
 }

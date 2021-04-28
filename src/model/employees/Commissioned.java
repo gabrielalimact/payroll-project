@@ -35,10 +35,11 @@ public class Commissioned extends Employee{
 
 
         for( SalesReport sales : salesReport ){
-            double commission = (this.getPercCommission() / 100.0);
-            double totalC = sales.getValue() * commission;
+            double totalC = sales.getValue() * (this.getPercCommission() / 100.0);
+
             total += totalC;
         }
+        
         return total;
         
     }

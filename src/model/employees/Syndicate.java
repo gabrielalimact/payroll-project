@@ -14,6 +14,7 @@ public class Syndicate {
         this.idEmployee = idEmployee;
         this.fees = fees;
         this.active = true;
+        this.serviceFees = new ArrayList<ServicesFees>();
     }
 
     public UUID getIdEmployee() {

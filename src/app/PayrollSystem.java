@@ -95,6 +95,8 @@ public class PayrollSystem {
                         PaymentConf.TodayPayroll(input, employeeList);
                     }
                     break;
+                default:
+                    break;
             }
         }
 
