@@ -19,8 +19,8 @@ public class EmployeeConf{
 
         int op;
         String optionSchedule = "";
-        String name = SystemInputs.readString(input, "Employee's Name: ");
-        String address = SystemInputs.readString(input, "Employee's Address: ");
+        // String name = SystemInputs.readString(input, "Employee's Name: ");
+        // String address = SystemInputs.readString(input, "Employee's Address: ");
 
         System.out.println("Select the type of employee: ");
         System.out.println("1 - Salaried\n2 - Commissioned\n3 - Hourly");
@@ -31,18 +31,21 @@ public class EmployeeConf{
         switch(op){
             case 1:
             double salary = SystemInputs.readDouble(input, "Salary Value: ");
-            employee = new Salaried(name, address, UUID.randomUUID(), syndicateMember, payment, salary);
+            employee = new Salaried("Gabriela", "Maceio", UUID.randomUUID(), syndicateMember, payment, salary);
+            //employee = new Salaried(name, address, UUID.randomUUID(), syndicateMember, payment, salary);
             break;
             
             case 2:
             double salaryC = SystemInputs.readDouble(input, "Salary Value: ");
             double commissionPay = SystemInputs.readDouble(input, "Percentage of Commission: ");
-            employee = new Commissioned(name, address, UUID.randomUUID(), syndicateMember, payment, salaryC, commissionPay);
+            employee = new Commissioned("Leticia", "Arapiraca", UUID.randomUUID(), syndicateMember, payment, salaryC, commissionPay);
+            //employee = new Commissioned(name, address, UUID.randomUUID(), syndicateMember, payment, salaryC, commissionPay);
             break;
             
             case 3:
             double hourPay = SystemInputs.readDouble(input, "Value for Work Hour: ");
-            employee = new Hourly(name, address, UUID.randomUUID(), syndicateMember, payment, hourPay);
+            employee = new Hourly("Joao", "Maceio", UUID.randomUUID(), syndicateMember, payment, hourPay);
+            //employee = new Hourly(name, address, UUID.randomUUID(), syndicateMember, payment, hourPay);
             break;
         }
         
@@ -110,8 +113,8 @@ public class EmployeeConf{
             LocalTime tIN = LocalTime.of(hIN, mIN);
 
             System.out.println("Please, enter the hours and minutes of OUT");
-            int hOUT = SystemInputs.readInt(input, "Hour of IN: ");
-            int mOUT = SystemInputs.readInt(input, "Minutes of IN: ");
+            int hOUT = SystemInputs.readInt(input, "Hour of OUT: ");
+            int mOUT = SystemInputs.readInt(input, "Minutes of OUT: ");
             LocalTime tOUT = LocalTime.of(hOUT, mOUT);
 
             TimeCard tc = new TimeCard(date, tIN, tOUT);
@@ -143,22 +146,32 @@ public class EmployeeConf{
     }
 
     public static void addSF(Scanner input, List<Employee> employeeList){
-        Predicate<Employee> isSynd = syndM -> syndM.getSyndicate().getActive(); // verifica se o employee é sindicalista
-        List<Employee> syndEmployee = employeeList.stream().filter(isSynd).collect(Collectors.toList()); // adiciona todos os sindicalistas numa lista
-
-        if(syndEmployee.isEmpty()){
-            System.out.println("There are no syndicalist employees on the list.");
-        }else{
-            System.out.println("Enter the date:");
-            LocalDate date = SystemInputs.readDate(input);
-            Employee employee = syndEmployee.get(getIndiceDaLista(input, syndEmployee));
-            double feesValue = SystemInputs.readDouble(input, "Please, enter the value of fees: ");
-
-            ServicesFees fees = new ServicesFees(feesValue, date);
-            employee.getSyndicate().getServiceFees().add(fees);
-            System.out.println("Service Fees added.");
-
+        int i=0;
+        for(Employee employee : employeeList){
+            if(employee.getSyndicate()!=null)
+            i++;
         }
+        if(i!=0){
+            Predicate<Employee> isSynd = syndM -> syndM.getSyndicate() != null && syndM.getSyndicate().getActive() ; // verifica se o employee é sindicalista
+            List<Employee> syndEmployee = employeeList.stream().filter(isSynd).collect(Collectors.toList()); // adiciona todos os sindicalistas numa lista
+
+            if(syndEmployee.isEmpty()){
+                System.out.println("There are no syndicalist employees on the list.");
+            }else{
+                System.out.println("Enter the date:");
+                LocalDate date = SystemInputs.readDate(input);
+                Employee employee = syndEmployee.get(getIndiceDaLista(input, syndEmployee));
+                double feesValue = SystemInputs.readDouble(input, "Please, enter the value of fees: ");
+
+                ServicesFees fees = new ServicesFees(feesValue, date);
+                employee.getSyndicate().getServiceFees().add(fees);
+                System.out.println("Service Fees added.");
+
+            }
+        }else{
+            System.out.println("There are no syndicalist employees on the list.");
+        }
+        
     }
 
     public static void editEmployee(Scanner input, List<Employee> employeeList){

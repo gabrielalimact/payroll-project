@@ -14,6 +14,7 @@ public class Hourly extends Employee{
 
     @Override
     public double calculatePayment(LocalDate date) { //calculo do pagamento para empregado horista
+        
         double total = 0, hours = 0, extraH = 0;
 
         List<TimeCard> timeCard;
@@ -28,6 +29,7 @@ public class Hourly extends Employee{
         if(!paycheck.isEmpty()){
             lastDate = paycheck.get(i).getDate();
             verifying = tC -> tC.getDate().isAfter(lastDate) && !tC.getDate().isAfter(date); 
+
         }else{
             verifying = tC ->!tC.getDate().isAfter(date);
         }
@@ -36,12 +38,13 @@ public class Hourly extends Employee{
 
 
         for( TimeCard t : timeCard ){ //passando a lista de cartões válidos
+            System.out.println("cheguei aqui");
             LocalTime tIN = t.getTimeIN();
             LocalTime tOUT = t.getTimeOUT();
 
             Duration d = Duration.between(tIN, tOUT); // calcula a duração entre o horário de entrada e o horário de saída;
             hours = d.toSeconds()/3600; //transforma a duração em horas
-
+            System.out.println("horas contabilizadas: " + hours);
             if(hours > 8){
                 extraH = hours-8;
                 double extraPay = extraH*getHourPay()*1.5;

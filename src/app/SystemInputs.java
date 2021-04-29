@@ -34,11 +34,6 @@ public class SystemInputs {
         return r;
     }
 
-    public static void pressEnter(Scanner input){
-        System.out.println("Press ENTER to continue...");
-        input.nextLine();
-    }
-
     public static LocalDate readDate(Scanner input){
         System.out.println("Day: ");
         int day = input.nextInt();

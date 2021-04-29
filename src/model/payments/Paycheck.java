@@ -68,10 +68,10 @@ public class Paycheck {
     
     @Override
     public String toString() {
-        return "Employee:\n" + getEmployee().basic() +
-            "\nTotal Salary = $" + getTotalSalary() +
-            "\nDiscounts = $" + getDiscounts() + 
-            "\nSalary = $"+ getNetSalary();
+        return "Employee: " + getEmployee().basic() +
+            "{ Total Salary = $" + getTotalSalary() +
+            ", Discounts = $" + getDiscounts() + 
+            ", Final Salary = $"+ getNetSalary() + " }";
 
     }
 }

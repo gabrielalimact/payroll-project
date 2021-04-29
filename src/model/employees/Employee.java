@@ -62,14 +62,18 @@ public abstract class Employee {
     public double calculateServicesFees(){
         Syndicate synd = getSyndicate();
         List<ServicesFees> taxes;
-
+        
         double totalTaxes = 0;
-        if (synd.getActive()){
-            taxes = synd.getServiceFees();
-            
-            for(ServicesFees s : taxes){
-                totalTaxes += s.getValue();
+        if(synd != null){
+            if (synd.getActive()){
+                taxes = synd.getServiceFees();
+                
+                for(ServicesFees s : taxes){
+                    totalTaxes += s.getValue();
+                }
             }
+        }else{
+            return 0;   
         }
         return totalTaxes;
     }
@@ -113,10 +117,9 @@ public abstract class Employee {
 
 
     public String basic(){
-        return "{\n" +
-            "Name='" + getName() + "'\n" +
-            "ID =  '" + getId() + "'\n" +
-            "}\n";
+        return
+            "{ Name='" + getName() + "'" +
+            ", ID =  '" + getId() + "' }";
     }
 
     
